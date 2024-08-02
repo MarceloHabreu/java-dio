@@ -1,10 +1,39 @@
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SelectionProcess {
 
     public static void main(String[] args) {
-        printSelected();
+        String[] candidates = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO"};
+        for(String candidate: candidates) {
+            gettingInTouch(candidate);
+        }
     }
+    static void gettingInTouch(String candidate) {
+        int attemptsMade = 1;
+        boolean keepTrying = true;
+        boolean answered = false;
+        do {
+            answered = answer();
+            keepTrying = !answer();
+            if(keepTrying)
+            attemptsMade++;
+            else
+            System.out.println("Successful contact!!");
+
+        } while(keepTrying && attemptsMade<3);
+
+        if(answered)
+        System.out.println("We managed to contact " + candidate + " on " + attemptsMade + " attempt.");
+        else
+        System.out.println("We couldn't contact " + candidate + ", maximum number of attempts " + attemptsMade + " made.");
+    }
+
+     //Auxiliary method
+      static boolean answer(){
+        return new Random().nextInt(3)==1;
+      }
+
     public static void printSelected() {
         String[] candidates = { "FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO", "MÔNICA", "FABRICIO", "MIRELA",
                 "DANIELA", "JOSÉ" };
