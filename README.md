@@ -1,2 +1,2 @@
 # java-dio
-Todos os projetos java dio.
+All java dio projects.
