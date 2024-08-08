@@ -5,7 +5,7 @@ You were hired to develop a simple parking control system. The system must manag
 ## Diagram UML
 
 ```mermaid
-classDriagram 
+classDiagram
    class Vehicle {
     +String getPlate()
     +String getModel()
@@ -14,8 +14,9 @@ classDriagram
    class Space {
     +int getNumber()
     +boolean isBusy()
-    +void occupy(String plate)
+    +void occupy(String plate, String model)
     +void vacate()
+    +Vehicle getVehicle()
    }
 
    class Parking {
@@ -23,3 +24,6 @@ classDriagram
     +void remove(String plate)
     +boolean checkAvailability()
    }
+
+   Vehicle <|-- Space
+   Parking o-- Space
