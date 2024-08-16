@@ -63,7 +63,12 @@ public class TenChallenges {
         int sumAllNumbers = numbers.stream().reduce(0, Integer::sum);
         System.out.println("The sum of all numbers on the list is: "+ sumAllNumbers);
 
-        // Challenge 9 -
+        // Challenge 9 - Check that all the numbers in the list are distinct (not repeated):
+        System.out.print("Challenge Nine: ");
+        long originalSize = numbers.size();
+        long distinctSize = numbers.stream().distinct().count();
+        boolean allNumbersAreDistinct = originalSize == distinctSize;
+        System.out.println("Are all numbers distinct?: " + allNumbersAreDistinct);
     }
 
 
