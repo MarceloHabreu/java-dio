@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class TenChallenges {
     public static void main(String[] args) {
@@ -10,25 +11,21 @@ public class TenChallenges {
         numbers.stream().sorted().forEach(number -> System.out.print("{" + number + "}"));
         System.out.println();
 
-
         // Challenge 2 - Print the sum of the even numbers in the list:
         System.out.print("Challenge Two: ");
         Integer sumEvenNumbers = numbers.stream().filter(number -> number % 2 ==0).reduce(0, (subtotal, number) -> subtotal + number);
         System.out.print("Sum of all the even numbers: " + sumEvenNumbers);
         System.out.println();
 
-
         // Challenge 3 - Check if all the numbers on the list are positive:
         System.out.print("Challenge Three: ");
         boolean numbersPositive = numbers.stream().allMatch(number -> number > 0);
         System.out.println("Are all numbers positive? " + numbersPositive);
 
-
         // Challenge 4 - Remove all odd values
         System.out.print("Challenge Four: ");
         List<Integer> oddNumbers = numbers.stream().filter(number -> number % 2 == 0).toList();
         System.out.println("Removing All Odd Numbers of list: " + oddNumbers);
-
 
         // Challenge 5 - Calculate the average of the numbers greater than 5
         System.out.print("Challenge Five: ");
@@ -47,7 +44,6 @@ public class TenChallenges {
         boolean numbersGreaterThanTen = numbers.stream().anyMatch(number -> number > 10);
         System.out.println("Is there a number greater than ten?: " + numbersGreaterThanTen);
 
-
         // Challenge 7 - Find the second-largest number on the list:
         System.out.print("Challenge Seven: ");
         Optional<Integer> secondLargest = numbers.stream().sorted(Comparator.reverseOrder()).distinct().skip(1).findFirst();
@@ -56,7 +52,6 @@ public class TenChallenges {
         } else {
             System.out.println("There is no second largest number.");
         }
-
 
         // Challenge 8 - Add up the digits of all the numbers on the list:
         System.out.print("Challenge Eight: ");
@@ -69,7 +64,41 @@ public class TenChallenges {
         long distinctSize = numbers.stream().distinct().count();
         boolean allNumbersAreDistinct = originalSize == distinctSize;
         System.out.println("Are all numbers distinct?: " + allNumbersAreDistinct);
+
+
+        // Challenge 10 - Group the odd values multiple of 3 or 5:
+        System.out.print("Challenge Ten: ");
+        List<Integer> groupedNumbers = numbers.stream().filter(n -> n % 2 != 0).filter(n-> n % 3 == 0 || n % 5 == 0).toList();
+        System.out.println("The odd numbers multiple of 3 or 5: " + groupedNumbers);
+
+        // Challenge 11 - Find the sum of the squares of all the numbers in the list:
+        System.out.print("Challenge Eleven: ");
+        int sumAllSquares = numbers.stream().map(n -> n * n).reduce(0, Integer::sum);
+        System.out.println("The sum of the squares of all numbers is: " + sumAllSquares);
+
+        // Challenge 12 - Find the product of all the numbers on the list:
+        System.out.print("Challenge Twelve: ");
+        int productAllNumbers = numbers.stream().reduce(1,(subtotal, number) -> subtotal * number);
+        System.out.println("The product of all the numbers is: " + productAllNumbers);
+
+        // Challenge 13 - Filter the numbers that are within a range:
+        System.out.print("Challenge Thirty: ");
+        List<Integer> numbersRange = numbers.stream().filter(n -> n > 5 && n < 10).toList();
+        System.out.println("Filtering Numbers Between 5 and 10 on the list: " + numbersRange);
+
+        // Challenge 14 – Find the highest prime number on the list:
+        System.out.print("Challenge Fourteen: ");
+        int highestPrimeNumber = numbers.stream().filter(number -> number > 1 && IntStream.range(2, number).noneMatch(i -> number % i == 0)).max(Integer::compareTo).orElse(-1);
+        System.out.println("The highest prime number is: " + highestPrimeNumber);
+
+        // Challenge 15 - Check that the list contains at least one negative number:
+        System.out.print("Challenge Fifteen: ");
+        boolean atLeastOneNegative = numbers.stream().anyMatch(n -> n < 0);
+        System.out.println("There is at least one negative number?: " + atLeastOneNegative);
+
     }
 
 
 }
+
+
