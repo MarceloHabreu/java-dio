@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class TenChallenges {
@@ -6,7 +7,7 @@ public class TenChallenges {
         // Functions interface: Consumer, Supplier, Function, Predicate, BinaryOperator.
 
         // Challenge 1 - Show the list in numerical order:
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 4, 3);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 4, 3, 15);
         System.out.print("Challenge One: ");
         numbers.stream().sorted().forEach(number -> System.out.print("{" + number + "}"));
         System.out.println();
@@ -63,7 +64,7 @@ public class TenChallenges {
         long originalSize = numbers.size();
         long distinctSize = numbers.stream().distinct().count();
         boolean allNumbersAreDistinct = originalSize == distinctSize;
-        System.out.println("Are all numbers distinct?: " + allNumbersAreDistinct);
+        System.out.println("Are all numbers distinct?: " + allNumbersAreDistinct  + "!");
 
 
         // Challenge 10 - Group the odd values multiple of 3 or 5:
@@ -96,6 +97,27 @@ public class TenChallenges {
         boolean atLeastOneNegative = numbers.stream().anyMatch(n -> n < 0);
         System.out.println("There is at least one negative number?: " + atLeastOneNegative);
 
+        // Challenge 16 - Group the numbers into odd and even:
+        System.out.print("Challenge Sixteen: ");
+        List<Integer> numbersEven = numbers.stream().filter(n -> n % 2 == 0).toList();
+        List<Integer> numbersOdd = numbers.stream().filter(n -> n % 2 != 0).toList();
+        System.out.print("All even numbers on the list: " + numbersEven + ", and ");
+        System.out.println("all odd numbers on the list: " + numbersOdd);
+
+        // Challenge 17 - Filter the prime numbers from the list:
+        System.out.print("Challenge Seventeen: ");
+        List<Integer> primeNumbers = numbers.stream().filter(n -> n > 1 && IntStream.range(2, n).noneMatch(i -> n % i == 0)).toList();
+        System.out.println("Prime numbers in the list: " + primeNumbers);
+
+        // Challenge 18 - Check if all the numbers in the list are the same:
+        System.out.print("Challenge Eighteen: ");
+        boolean allNumbersEqual = numbers.stream().allMatch(n -> n.equals(numbers.getFirst()));
+        System.out.println("Are all numbers equal? " + allNumbersEqual + "!");
+
+        // Challenge 19 - Find the sum of the numbers divisible by 3 and 5:
+        System.out.print("Challenge Nineteen: ");
+        int sumNumbersDiByThreeAndFive = numbers.stream().filter(n -> n % 3 == 0 && n % 5 == 0).reduce(0, Integer::sum);
+        System.out.println("The sum of the numbers divisible by 3 and 5 on the list is: " + sumNumbersDiByThreeAndFive);
     }
 
 
