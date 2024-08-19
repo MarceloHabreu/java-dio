@@ -1,8 +1,7 @@
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class TenChallenges {
+public class Challenges {
     public static void main(String[] args) {
         // Functions interface: Consumer, Supplier, Function, Predicate, BinaryOperator.
 
