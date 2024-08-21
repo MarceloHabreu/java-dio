@@ -21,8 +21,38 @@ public class Main {
         mentoring.setDescription("Description mentoring Java");
         mentoring.setDate(LocalDate.now());
 
-        System.out.println(course1);
-        System.out.println(course2);
-        System.out.println(mentoring);
+//        System.out.println(course1);
+//        System.out.println(course2);
+//        System.out.println(mentoring);
+
+        Bootcamp bootcamp = new Bootcamp();
+        bootcamp.setName("Bootcamp Java Developer");
+        bootcamp.setDescription("Description bootcamp Java Developer");
+        bootcamp.getContents().add(course1);
+        bootcamp.getContents().add(course2);
+        bootcamp.getContents().add(mentoring);
+
+        Dev devMarcelo = new Dev();
+        devMarcelo.setName("Marcelo");
+        devMarcelo.RegisterBootcamp(bootcamp);
+        System.out.println("Contents subscribes Marcelo =>" + devMarcelo.getContentSubscribers());
+        devMarcelo.progress();
+        devMarcelo.progress();
+        devMarcelo.progress();
+        System.out.println("Contents subscribes Marcelo =>" + devMarcelo.getContentSubscribers());
+        System.out.println("Contents completed Marcelo =>" + devMarcelo.getContentCompleted());
+        System.out.println("XP Marcelo: " + devMarcelo.calculatedTotalXp());
+
+        System.out.println();
+
+        Dev devCamila = new Dev();
+        devCamila.setName("Camila");
+        devCamila.RegisterBootcamp(bootcamp);
+        System.out.println("Contents subscribes Camila => " + devCamila.getContentSubscribers());
+        devCamila.progress();
+        System.out.println("Contents subscribes Camila =>" + devCamila.getContentSubscribers());
+        System.out.println("Contents completed Camila =>" + devCamila.getContentCompleted());
+        System.out.println("XP Camila: " + devCamila.calculatedTotalXp());
+
     }
 }

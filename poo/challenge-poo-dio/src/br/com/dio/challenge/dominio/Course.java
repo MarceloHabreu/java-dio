@@ -11,7 +11,7 @@ public class Course extends Content{
     // Method
     @Override
     public double calculateXp() {
-        return XP_PATTERN + workload;
+        return XP_PATTERN * workload;
     }
 
     //Getters and Setters

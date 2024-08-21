@@ -2,17 +2,35 @@ package br.com.dio.challenge.dominio;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
     private String name;
-    private Set<Content> ContentSubscribers = new LinkedHashSet<>();
+    private Set<Content> contentSubscribers = new LinkedHashSet<>();
     private Set<Content> contentCompleted = new LinkedHashSet<>();
 
     //Methods
-    public void RegisterBootcamp(Bootcamp bootcamp){}
-    public void progress(){}
-    public void calculatedTotalXp(){}
+    public void RegisterBootcamp(Bootcamp bootcamp){
+        this.contentSubscribers.addAll((bootcamp.getContents()));
+        bootcamp.getDevsSubscribers().add(this);
+    }
+    public void progress(){
+        Optional<Content> content = this.contentSubscribers.stream().findFirst();
+        if(content.isPresent()) {
+            this.contentCompleted.add(content.get());
+            this.contentSubscribers.remove((content.get()));
+        } else {
+            System.err.println("You are not enrolled in any content");
+        }
+
+    }
+    public double calculatedTotalXp(){
+        return this.contentCompleted
+                .stream()
+                .mapToDouble(Content::calculateXp)
+                .sum();
+    }
 
     // Getters and Setters
 
@@ -25,11 +43,11 @@ public class Dev {
     }
 
     public Set<Content> getContentSubscribers() {
-        return ContentSubscribers;
+        return contentSubscribers;
     }
 
     public void setContentSubscribers(Set<Content> contentSubscribers) {
-        ContentSubscribers = contentSubscribers;
+        contentSubscribers = contentSubscribers;
     }
 
     public Set<Content> getContentCompleted() {
@@ -46,11 +64,11 @@ public class Dev {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dev dev = (Dev) o;
-        return Objects.equals(name, dev.name) && Objects.equals(ContentSubscribers, dev.ContentSubscribers) && Objects.equals(contentCompleted, dev.contentCompleted);
+        return Objects.equals(name, dev.name) && Objects.equals(contentSubscribers, dev.contentSubscribers) && Objects.equals(contentCompleted, dev.contentCompleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, ContentSubscribers, contentCompleted);
+        return Objects.hash(name, contentSubscribers, contentCompleted);
     }
 }
