@@ -1,4 +1,9 @@
-classDiagram
+# Santander Dev Week 2023
+Uma java RESTful api criada para a santander Dev week.
+
+
+## Diagrama de classes
+```mermaid
     class User {
         - String name
         - Account account
