@@ -1,6 +1,11 @@
 classDiagram
-class User { - String name - Account account - Feature[] features - Card card - News[] news
-}
+    class User {
+        - String name
+        - Account account
+        - Feature[] features
+        - Card card
+        - News[] news
+    }
 
     class Account {
         - String number
