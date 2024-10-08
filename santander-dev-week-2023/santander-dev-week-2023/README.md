@@ -37,3 +37,4 @@ Uma java RESTful api criada para a santander Dev week.
     User --> "0..*" Feature : has
     User --> "1" Card : has
     User --> "0..*" News : has
+```
