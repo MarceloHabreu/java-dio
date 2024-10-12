@@ -1,6 +1,17 @@
-classDiagram
-class User { - String name - Account account - Feature[] features - Card card - News[] news
-}
+# Santander Dev Week 2023
+Uma java RESTful api criada para a santander Dev week.
+
+
+## Diagrama de classes
+```mermaid
+    classDiagram
+    class User {
+        - String name
+        - Account account
+        - Feature[] features
+        - Card card
+        - News[] news
+    }
 
     class Account {
         - String number
@@ -27,3 +38,5 @@ class User { - String name - Account account - Feature[] features - Card card - 
     User --> "0..*" Feature : has
     User --> "1" Card : has
     User --> "0..*" News : has
+
+```
